@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Course(models.Model):
     title = models.CharField(
@@ -33,6 +35,22 @@ class Lesson(models.Model):
         verbose_name="Фото",
         help_text="Загрузите новое фото",
     )
+
+    course = models.ForeignKey(Course,
+                               on_delete=models.SET_NULL,
+                               verbose_name="курс",
+                               blank=True,
+                               null=True,
+                               )
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User,
+                             on_delete=models.SET_NULL,
+                             verbose_name="подписка",
+                             blank=True,
+                             null=True,
+                             ),
 
     course = models.ForeignKey(Course,
                                on_delete=models.SET_NULL,
