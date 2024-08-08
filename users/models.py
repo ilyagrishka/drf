@@ -36,3 +36,22 @@ class Payments(models.Model):
                                     null=True)
     sum_of_payments = models.PositiveIntegerField(verbose_name="сумма оплаты")
     payment_method = models.CharField(verbose_name="способ оплаты")
+    session_id = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        verbose_name="id сессии",
+    )
+    link = models.URLField(
+        max_length=400,
+        blank=True,
+        null=True,
+        verbose_name="ссылка на оплату",
+    )
+
+    class Meta:
+        verbose_name = "оплата"
+        verbose_name_plural = "оплата"
+
+    def __str__(self):
+        return self.sum_of_payments

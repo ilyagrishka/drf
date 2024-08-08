@@ -19,6 +19,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg'
+    # 'drf_spectacular'
+    "stripe"
+    "forex_python"
 
     'rest_framework',
     "users",
@@ -108,3 +112,4 @@ AUTH_USER_MODEL = "users.User"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")

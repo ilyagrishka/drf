@@ -1,3 +1,4 @@
+from django.utils.decorators import method_decorator
 from django_filters.rest_framework import filters, DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
@@ -9,6 +10,9 @@ from materials.serializers import CourseSerializer, LessonSerializer, CourseDeta
 from users.permissins import IsOwner, IsModer
 
 
+@method_decorator(name='list', decorator=swagger_auto_schema(
+    operation_description="description from swagger_auto_schema via method_decorator"
+))
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
