@@ -4,13 +4,13 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 
 from materials.services import convert_rub_to_dollars, create_stripe_price, create_stripe_session
-from users.serializers import UserSerializer, PaymentsSerializers
+from users.serializers import  PaymentsSerializers, UserSerializers
 
 from users.models import User, Payments
 
 
 class UserCreateAPIView(CreateAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserSerializers
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
 
@@ -21,7 +21,7 @@ class UserCreateAPIView(CreateAPIView):
 
 
 class PaymentsCreateAPIView(CreateAPIView):
-    serializer_class = PaymentsSerializer
+    serializer_class = PaymentsSerializers
     queryset = Payments.objects.all()
 
     def perform_create(self, serializer):

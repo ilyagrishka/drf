@@ -1,8 +1,8 @@
 from rest_framework.serializers import ValidationError
 
-forbidden_words = ["ставки", "крипта", "казино"]
+only_youtube = "youtube.com."
 
 
-def validate_forbidden_words(value):
-    if value.lower() in forbidden_words:
-        raise ValidationError("ИСПОЛЬЗОВАНО ЗАПРЕЩЁННОЕ СЛОВО")
+def validate_forbidden_links(value):
+    if value.lower() not in only_youtube:
+        raise ValidationError("ИСПОЛЬЗОВАНА ЗАПРЕЩЁННАЯ ССЫЛКА")

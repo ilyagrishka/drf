@@ -19,10 +19,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'drf_yasg'
+    'drf_yasg',
     # 'drf_spectacular'
-    "stripe"
-    "forex_python"
+    "stripe",
+    "forex_python",
 
     'rest_framework',
     "users",
