@@ -5,6 +5,18 @@ from forex_python.converter import CurrencyRates
 stripe.api_key = STRIPE_API_KEY
 
 
+def create_product():
+    try:
+        product = stripe.Product.create(
+            name='Название продукта',
+            description='Описание продукта'
+        )
+        return product
+
+    except Exception as e:
+        return None
+
+
 def convert_rub_to_dollars(sum_of_payments):
     c = CurrencyRates()
     rate = c.get_rate('RUB', 'USD')
@@ -26,3 +38,4 @@ def create_stripe_session(price):
         mode="payment",
     )
     return session.get("id"), session.get("url")
+
