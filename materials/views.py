@@ -70,7 +70,7 @@ class LessonUpdateApiView(UpdateAPIView):
         if course.update_course(pk=request.user.pk).exists():
             course.update_course.send_mail(course.owner.email)
         serializer = self.get_serializer(course)
-        return Response(data=serializer.data)
+        return  Response(data=serializer.data)
 
 
 class LessonDestroyApiView(DestroyAPIView):
