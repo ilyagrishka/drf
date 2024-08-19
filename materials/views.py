@@ -1,9 +1,13 @@
 from django.utils.decorators import method_decorator
 from django_filters.rest_framework import filters, DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
+
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView, \
+    get_object_or_404
 from materials.models import Course, Lesson
 from materials.paginations import CustomPagination
 from materials.serializers import CourseSerializer, LessonSerializer, CourseDetailSerializer, SubscriptionSerializer
@@ -59,6 +63,14 @@ class LessonUpdateApiView(UpdateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (IsModer, IsAuthenticated | IsOwner)
+
+    @action(detail=True, methods=("post",))
+    def update_course(self, request, pk):
+        course = get_object_or_404(Course, pk=pk)
+        if course.update_course(pk=request.user.pk).exists():
+            course.update_course.send_mail(course.owner.email)
+        serializer = self.get_serializer(course)
+        return Response(data=serializer.data)
 
 
 class LessonDestroyApiView(DestroyAPIView):
