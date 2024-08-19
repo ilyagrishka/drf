@@ -11,6 +11,7 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to="users/avatars", verbose_name="аватар", blank=True, null=True)
     phone_number = models.CharField(max_length=23, verbose_name="телефон", blank=True, null=True)
     country = models.CharField(max_length=50, verbose_name="страна")
+    last_login = models.DateTimeField(max_length=50, verbose_name="дата последнего захода")
 
     token = models.CharField(max_length=100, verbose_name="token", blank=True, null=True)
 

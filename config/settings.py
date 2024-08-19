@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -23,6 +24,7 @@ INSTALLED_APPS = [
     # 'drf_spectacular'
     "stripe",
     "forex_python",
+    "django-celery-beat",
 
     'rest_framework',
     "users",
@@ -120,6 +122,15 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+CELERY_BEAT_SCHEDULE = {
+    'send_email_last_login': {
+        'task': 'materials.tasks.send_email_last_login',
+        'schedule': timedelta(minutes=1),
+    },
+}
 
 EMAIL_HOST = "smtp.yandex.ru"
 EMAIL_PORT = 465
