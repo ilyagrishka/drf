@@ -6,7 +6,7 @@ from materials.apps import MaterialsConfig
 from materials.views import LessonListApiView, LessonCreateApiView, LessonUpdateApiView, LessonDestroyApiView, \
     LessonRetrieveApiView
 
-app_name = MaterialsConfig
+app_name = MaterialsConfig.name
 
 router = SimpleRouter()
 router.register("", CourseViewSet)

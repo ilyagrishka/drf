@@ -11,21 +11,21 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to="users/avatars", verbose_name="аватар", blank=True, null=True)
     phone_number = models.CharField(max_length=23, verbose_name="телефон", blank=True, null=True)
     country = models.CharField(max_length=50, verbose_name="страна")
-    last_login = models.DateTimeField(max_length=50, verbose_name="дата последнего захода")
+    last_login = models.DateTimeField(max_length=50, verbose_name="дата последнего захода", blank=True, auto_now_add=True)
 
     token = models.CharField(max_length=100, verbose_name="token", blank=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    def __str__(self):
+        return self.email
     # objects = CustomUserManager()
 
     class Meta:
         verbose_name = "пользователь"
         verbose_name_plural = "пользователи "
 
-        def __str__(self):
-            return self.email
 
 
 class Payments(models.Model):

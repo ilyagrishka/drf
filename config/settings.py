@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     # 'drf_spectacular'
     "stripe",
     "forex_python",
-    "django-celery-beat",
+    "django_celery_beat",
 
     'rest_framework',
     "users",
