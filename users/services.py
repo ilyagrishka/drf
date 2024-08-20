@@ -8,7 +8,7 @@ stripe.api_key = STRIPE_API_KEY
 def create_product():
     try:
         product = stripe.Product.create(
-            name='Название продукта',
+            title='Название продукта',
             description='Описание продукта'
         )
         return product
