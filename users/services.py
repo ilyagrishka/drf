@@ -5,11 +5,11 @@ from forex_python.converter import CurrencyRates
 stripe.api_key = STRIPE_API_KEY
 
 
-def create_product():
+def create_product(title, description):
     try:
         product = stripe.Product.create(
-            title='Название продукта',
-            description='Описание продукта'
+            title='Название курса',
+            description='Описание курса'
         )
         return product
 
@@ -38,4 +38,3 @@ def create_stripe_session(price):
         mode="payment",
     )
     return session.get("id"), session.get("url")
-
