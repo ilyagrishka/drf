@@ -2,14 +2,17 @@ import stripe
 from config.settings import STRIPE_API_KEY
 from forex_python.converter import CurrencyRates
 
+from materials.models import Course
+
 stripe.api_key = STRIPE_API_KEY
 
 
 def create_product(title, description):
+    course = Course.objects.get()
     try:
         product = stripe.Product.create(
-            title=lesson.title,
-            description= lesson.description
+            title=course.title,
+            description=course.description
         )
         return product
 
