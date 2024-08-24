@@ -9,7 +9,7 @@ def create_product(title, description):
     try:
         product = stripe.Product.create(
             title='курс',
-            description='лучший курс'
+            description='мега курс'
         )
         return product
 

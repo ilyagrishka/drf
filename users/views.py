@@ -29,7 +29,7 @@ class PaymentsCreateAPIView(CreateAPIView):
         amount_in_dollars = convert_rub_to_dollars(payment.sum_of_payments)
         product = create_product(
             title="курс",
-            description="лучший курс"
+            description="мега курс"
         )
         price = create_stripe_price(product)
         session_id, payment_link = create_stripe_session(price)
