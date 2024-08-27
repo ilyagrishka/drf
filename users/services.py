@@ -8,11 +8,10 @@ stripe.api_key = STRIPE_API_KEY
 
 
 def create_product(title, description):
-    course = Course.objects.get()
     try:
         product = stripe.Product.create(
-            title=course.title,
-            description=course.description
+            title=title,
+            description=description
         )
         return product
 
